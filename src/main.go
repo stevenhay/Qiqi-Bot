@@ -50,6 +50,7 @@ func main() {
 		fmt.Println("error opening connection:", err)
 		return
 	}
+	discord.UpdateGameStatus(0, "I am Qiqi. I am a zombie. And I forgot what comes next...")
 
 	fmt.Println("Qiqi Bot running!")
 	sc := make(chan os.Signal, 1)

@@ -63,6 +63,11 @@ func (d RoleCommand) HandleDefaultCommands(s *discordgo.Session, msg *discordgo.
 		var role *discordgo.Role
 		var err error
 
+		if len(msgParts) == 1 {
+			s.ChannelMessageSend(msg.ChannelID, "You have to type a role name!")
+			return
+		}
+
 		// check if it's an @role
 		id := helpers.RoleAtToID(msgParts[1])
 		if id != "" {
@@ -97,7 +102,7 @@ func (d RoleCommand) HandleDefaultCommands(s *discordgo.Session, msg *discordgo.
 func (d RoleCommand) generateColourEmbed() *discordgo.MessageEmbed {
 	embed := &discordgo.MessageEmbed{}
 	embed.Title = "Colour Role Picker"
-	embed.Description = "Description"
+	embed.Description = "React to be given a role that changes the colour of your name! Only one role may be active at a time."
 	embed.Color = 0xb40000
 
 	keys := make([]string, 0)
